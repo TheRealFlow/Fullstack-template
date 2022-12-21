@@ -17,4 +17,18 @@ public class MovieService {
     public Movie getMovieById(int id) {
         return movieRepo.getMovieById(id);
     }
+
+    public void deleteMovie(int id) {
+        movieRepo.deleteMovie(id);
+    }
+
+    public Movie addNewMovie(Movie movie) {
+        movie.setId(this.getNewId());
+        return movieRepo.addMovie(movie);
+    }
+
+    private int getNewId() {
+        int id = 0;
+        return ++id;
+    }
 }

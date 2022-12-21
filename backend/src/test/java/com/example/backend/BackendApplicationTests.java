@@ -105,7 +105,7 @@ class BackendApplicationTests {
                 ]
                 """;
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/movies"))
+        mvc.perform(MockMvcRequestBuilders.get("/movies"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
     }
@@ -121,7 +121,7 @@ class BackendApplicationTests {
                     }
                 """;
 
-        mvc.perform(MockMvcRequestBuilders.get("/api/movies/1"))
+        mvc.perform(MockMvcRequestBuilders.get("/movies/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(expectedJSON));
     }

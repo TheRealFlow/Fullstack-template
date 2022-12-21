@@ -1,20 +1,17 @@
 package com.example.backend;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/movies")
+@RequestMapping("/movies")
 public class MovieController {
     private final MovieService movieService;
 
-    @GetMapping
+    @GetMapping()
     public List<Movie> getAllMovies() {
         return movieService.getAllMovies();
     }
@@ -22,5 +19,15 @@ public class MovieController {
     @GetMapping("/{id}")
     public Movie getMovieById(@PathVariable int id) {
         return movieService.getMovieById(id);
+    }
+
+    @DeleteMapping("{id}")
+    void deleteMovie(@PathVariable int id) {
+        movieService.deleteMovie(id);
+    }
+
+    @PostMapping
+    public Movie addNewMovie (@RequestBody Movie movie) {
+        return movieService.addNewMovie(movie);
     }
 }

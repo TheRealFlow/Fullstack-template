@@ -1,13 +1,18 @@
 package com.example.backend;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Repository
 public class MovieRepo {
+
+    private static final MovieRepo movieRepo = new MovieRepo();
 
     List<Movie> movies = new ArrayList<>(
             List.of(
@@ -38,6 +43,20 @@ public class MovieRepo {
             }
         }
         return movie;
+    }
+
+    public void deleteMovie(int id) {
+       if (movies.remove(id) == null) {
+           throw new ResponseStatusException(
+                   HttpStatus.NOT_FOUND,
+                   "Nothing to see here!"
+           );
+       }
+    }
+
+    public Movie addMovie(Movie movie) {
+        movies.add(movie.getId(), movie);
+        return movies.get(movie.getId());
     }
 }
 
