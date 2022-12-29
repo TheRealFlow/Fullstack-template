@@ -6,7 +6,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 
 @Repository
@@ -54,9 +53,15 @@ public class MovieRepo {
        }
     }
 
-    public Movie addMovie(Movie movie) {
-        movies.add(movie.getId(), movie);
-        return movies.get(movie.getId());
+    public Movie addMovie(Movie newMovie) {
+        int newID = movies.size() + 1;
+        if (newMovie != null) {
+            newMovie.setId(newID);
+            movies.add(newMovie);
+            return getMovieById(newID);
+        } else {
+            return null;
+        }
     }
 }
 

@@ -13,8 +13,7 @@ export default function MovieList(props: MovieList) {
     return (
         <>
             <input type="search" placeholder={"Search Movies"} onChange={event => setSearch(event.target.value)}/>
-            <button>Add a new Movie</button>
-            <ul className={"Container"}>{props.movies.filter(mov => mov.name.includes(search))
+            <ul className={"Container"}>{props.movies.filter(mov => mov.name.toLowerCase().includes(search.toLowerCase()))
                 .map(mov => (
                 <MovieCard movie={mov} deleteMovie={props.deleteMovie} />
             ))}

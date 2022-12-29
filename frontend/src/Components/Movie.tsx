@@ -4,3 +4,9 @@ export type Movie = {
     year: number;
     imgURL: string;
 }
+
+export type NewMovie = {
+    title: string;
+    imageURL: string;
+    year: number;
+}

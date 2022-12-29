@@ -3,6 +3,7 @@ import './App.css';
 import {Movie} from "./Components/Movie";
 import axios from "axios";
 import MovieList from "./Components/MovieList";
+import AddMovie from "./Components/NewMovie";
 
 function App() {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -25,7 +26,11 @@ function App() {
 
   return (
     <>
-      <MovieList movies={movies} deleteMovie={deleteMovies}/>
+        {movies.length === 0 ?
+            <p>Nothing to see here...</p> :
+        <MovieList movies={movies} deleteMovie={deleteMovies}/>
+        }
+        <AddMovie/>
     </>
   );
 }

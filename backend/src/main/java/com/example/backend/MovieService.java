@@ -22,13 +22,7 @@ public class MovieService {
         movieRepo.deleteMovie(id);
     }
 
-    public Movie addNewMovie(Movie movie) {
-        movie.setId(this.getNewId());
-        return movieRepo.addMovie(movie);
-    }
-
-    private int getNewId() {
-        int id = 0;
-        return ++id;
+    public Movie addMovie(Movie newMovie) {
+        return movieRepo.addMovie(newMovie);
     }
 }
